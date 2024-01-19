@@ -15,6 +15,7 @@ const Opcao = styled.li`
   min-width: 120px;
   padding: 0 5px;
   text-align: center;
+  transition: all 0.2s ease-in-out;
   p:hover {
     text-decoration: underline;
     text-underline-offset: 5px;

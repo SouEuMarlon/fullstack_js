@@ -27,8 +27,7 @@ const Button = styled.button`
     width: 150px;
     transition: background-color 0.2s ease-in-out;
     &:hover {
-        background-color: #D68900; 
-        
+        background-color: #D68900;        
         cursor: pointer;
     }
 `
