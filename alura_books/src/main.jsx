@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import App from './App.jsx'
 
@@ -30,6 +31,11 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <GlobalStyle/>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/favoritos" element={<p>Oi!!!</p>} />
+        <Route path="/" element={<App />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 )
