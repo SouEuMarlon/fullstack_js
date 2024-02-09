@@ -1,14 +1,18 @@
 /* eslint-disable react/jsx-key */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input from "../Input";
-import { livros } from './dadosPesquisa';
+// import { livros } from './dadosPesquisa';
+import livroImg from '../../assets/imagens/livro.png';
+import { postFavorito } from "../../services/favoritos";
+import { getLivros } from "../../services/livros";
 
 const SearchContainer = styled.section`
+  background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
   color: #FFF;
   text-align: center;
   padding: 85px 0;
-  height: 270px;
+  height: 720px;
   width: 100%;
 `
 const Titulo = styled.h2`
@@ -61,6 +65,22 @@ const LivrosContainer = styled.section`
 
 function Search(){
   const [livrosPesquisados, setLivrosPesquisados] = useState([]);
+  const [livros, setLivros] = useState([]);
+
+  useEffect(() => {
+    fetchLivros();
+  }, []);
+
+  async function fetchLivros(){
+    const livrosDaApi = await getLivros();
+    setLivros(livrosDaApi);
+  }
+
+  async function insertFavorito(id){
+    await postFavorito(id);
+    const livroNome = livros.find(livro => livro.id === id).nome;
+    alert(`O livro ${livroNome.toUpperCase()} foi adicionado aos favoritos!`);
+  }
 
   return(
     <SearchContainer>
@@ -78,8 +98,8 @@ function Search(){
       
       <LivrosContainer>
         {livrosPesquisados.map( livro => (
-          <div key={livro.id}>
-            <img src={livro.src} alt={livro.nome} />
+          <div key={livro.id} onClick={() => insertFavorito(livro.id)}>
+            <img src={livroImg} alt={livro.nome} />
             <p>{livro.nome}</p>
           </div>
         ))}

@@ -8,7 +8,7 @@ const LastReleaseContainer = styled.section`
     background-color: #EBECEE;
     display: flex;
     flex-direction: column;
-    margin-top: 150px;
+    /* margin-top: 150px; */
     padding-bottom: 20px;
 `
 
